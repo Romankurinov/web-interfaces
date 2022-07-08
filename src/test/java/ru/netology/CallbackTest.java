@@ -43,11 +43,11 @@ public class CallbackTest {
     void shouldGetSuccessMessage() {
         driver.get("http://localhost:9999");
         List<WebElement> elements = driver.findElements(By.className("input__control"));
-        elements.get(0).sendKeys("Роман Куринов");
-        elements.get(1).sendKeys("+79994789432");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Петров-Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79994789432");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button")).click();
-        String text=driver.findElement(By.className("paragraph")).getText();
+        String text=driver.findElement(By.cssSelector("[data-test-id='order-success'] p")).getText();
         assertEquals("  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text);
     }
 }
